@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+		<div class = "row header" id = "site_page">
+			<div class = "col-md-6">
+				<h1>Monitoring Sites</h1>
+			</div>
+			<div class = "col-md-6">
+				
+			</div>
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr>
+			</div>	
+		</div>
+
+		
+		
+		
+		<div class = "row">
+				
+				<div class = "col-md-6">
+					<div id="offering_select">
+						<label>Filter by Offering:
+							<select>
+								<option selected="selected" value="All">All</option>
+								{% for o in offerings %}
+								<option value="{{o.domain_name}}">{{o.domain_name}}</option>
+								{% endfor %}
+							</select>
+						</label>
+					</div>
+						
+					<div id="map" style="height: 700px;"></div>
+				</div>
+				<div class = "col-md-6">
+					
+					 <table class="table" id="sites_table">
+					 	<thead>
+					 		<tr>
+								<th>National ID</th>
+						    	<th>Site Name</th>
+						    	<th>Agency Name</th>
+						    	<th>Offering</th>
+							</tr>
+
+					 	</thead>
+					 	
+					</table>
+				</div>
+		</div>
+
+	
+
+{% endblock %}
+
+{% block scripts%}
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.0/MarkerCluster.Default.css">
+	<!--link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.0/MarkerCluster.css"-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'css/leaflet_cluster_marker.css') }}">
+	<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.0.0/leaflet.markercluster.js"></script-->
+	<script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='js/sitesPage.js')}}"></script>
+{% endblock %}

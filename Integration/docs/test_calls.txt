@@ -1,0 +1,55 @@
+
+
+http://localhost:5000/SOS?Service=SOS&Request=GetObservation&FeatureOfInterest=LAWA-100222&ObservedProperty=Precipitation&Procedure=Raw
+
+http://localhost:5000/SOS?Service=SOS&Request=GetObservation&FeatureOfInterest=LAWA-100222&ObservedProperty=Precipitation&TemporalFilter=om:phenomenonTime,2016-09-01T00:00:00/2016-09-02T00:00:00&Procedure=DayTotal
+
+http://localhost:5000/SOS?Service=SOS&Request=GetObservation&FeatureOfInterest=ARC-00036&ObservedProperty=Precipitation&TemporalFilter=om:phenomenonTime,2016-09-01T00:00:00/2016-09-02T00:00:00&Procedure=DayTotal    didn't work
+
+http://localhost:5000/SOS?Service=SOS&Request=GetObservation&FeatureOfInterest=HRC-00015&ObservedProperty=Discharge&TemporalFilter=om:phenomenonTime,2016-09-01T00:00:00/2016-09-02T00:00:00&Procedure=HourAverage
+
+
+
+ARC-Kisters
+http://localhost:5000/SOS?Service=SOS&Request=GetObservation&FeatureOfInterest=ARC-00036&ObservedProperty=Precipitation&Procedure=Raw (Bad call requesting rainfall from a water quality site)
+
+
+Pakuranga (Pakuranga at Sunnyhill Village, ID 649820)
+http://localhost:5000/SOS?Service=SOS&Request=GetObservation&FeatureOfInterest=ARC-00075&ObservedProperty=Precipitation&TemporalFilter=om:phenomenonTime,2016-09-01T00:00:00/2016-09-02T00:00:00&Procedure=Raw (No response, check, checked and no data for native request, may need temporal filter)
+
+http://aklc.hydrotel.co.nz:8080/KiWIS/KiWIS?service=SOS&version=2.0&request=GetObservation&featureOfInterest=649820&observedProperty=Rainfall&Procedure=RAW
+
+http://aklc.hydrotel.co.nz:8080/KiWIS/KiWIS?service=SOS&request=getCapabilities
+
+http://aklc.hydrotel.co.nz:8080/KiWIS/KiWIS?service=SOS&version=2.0&request=GetObservation&featureOfInterest=741611&observedProperty=Rainfall&Procedure=RAW
+
+http://aklc.hydrotel.co.nz:8080/KiWIS/KiWIS?service=SOS&version=2.0&request=GetObservation&featureOfInterest=Piggots Rain Gauge (Watercare)&observedProperty=Rainfall&Procedure=RAW  - doesn't work
+
+http://aklc.hydrotel.co.nz:8080/KiWIS/KiWIS?service=SOS&version=2.0&request=GetObservation&featureOfInterest=750120&observedProperty=Rainfall&Procedure=RAW - this is the call.  Are the names right in the WFS / database?
+
+
+Horizons
+
+http://localhost:5000/SOS?Service=SOS&Request=GetObservation&FeatureOfInterest=HRC-00015&ObservedProperty=Discharge&TemporalFilter=om:phenomenonTime,2016-09-01T00:00:00/2016-09-02T00:00:00&Procedure=HourAverage
+
+http://localhost:5000/SOS?Service=SOS&Request=GetObservation&FeatureOfInterest=HRC-00103&ObservedProperty=Precipitation&TemporalFilter=om:phenomenonTime,2016-09-01T00:00:00/2016-09-02T00:00:00&Procedure=HourTotal
+
+http://tsdata.horizons.govt.nz/boo.hts?Service=Hilltop&Request=GetData&Site=Kahuterawa at Scotts Road&Measurement=Rainfall [SCADA Rainfall]
+
+Waikato
+WRC
+
+http://wrcgis.waikatoregion.govt.nz/wrcgis/services/emar/MonitoringSiteReferenceData/MapServer/WFSServer?request=Getfeature&service=WFS&VERSION=1.1.0&typename=monitoringsitereferencedata&srsname=epsg:4326
+Capital for attribute names.
+
+http://envdata.waikatoregion.govt.nz:8080/KiWIS/KiWIS?service=SOS&version=2.0&request=GetCapabilities
+
+http://envdata.waikatoregion.govt.nz:8080/KiWIS/KiWIS?datasource=0&service=SOS&version=2.0&request=GetObservation&featureOfInterest=%FeatureOfInterest%&procedure=Cmd.P&observedProperty=Discharge
+
+procedure=Hour.Mean
+
+http://envdata.waikatoregion.govt.nz:8080/KiWIS/KiWIS?datasource=0&service=SOS&version=2.0&request=GetObservation&featureOfInterest=%FeatureOfInterest%&procedure=Hour.Total&observedProperty=Precipitation
+procedure=Month.Total
+procedure=Year.Total
+
+http://envdata.waikatoregion.govt.nz:8080/KiWIS/KiWIS?datasource=0&service=SOS&version=2.0&request=GetObservation&featureOfInterest=14435&procedure=Cmd.P&observedProperty=Total Nitrogen

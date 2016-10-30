@@ -1,0 +1,155 @@
+<sos:Capabilities version="2.0.0" 
+	
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:gml="http://www.opengis.net/gml/3.2"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:wml2="http://www.opengis.net/waterml/2.0"
+                xmlns:sos="http://www.opengis.net/sos/2.0"
+                xmlns:ows="http://www.opengis.net/ows/1.1"
+                xmlns:fes="http://www.opengis.net/fes/2.0"
+                xmlns:swes="http://www.opengis.net/swes/2.0"
+                xsi:schemaLocation="http://www.opengis.net/sos/2.0 http://schemas.opengis.net/sos/2.0/sos.xsd">
+	<ows:ServiceIdentification>
+		<ows:Title>Trial Integration index</ows:Title>
+		<ows:ServiceType>SOS</ows:ServiceType>
+		<ows:ServiceTypeVersion>2.0.0</ows:ServiceTypeVersion>
+		<ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/core</ows:Profile>
+		<ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/soap</ows:Profile>
+		<ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/kvp-core</ows:Profile>
+		<ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/foiRetrieval</ows:Profile>
+		<ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/gda</ows:Profile>
+		<ows:Profile>http://www.opengis.net/spec/SOS/2.0/conf/xml</ows:Profile>
+		<ows:Profile>http://www.opengis.net/spec/SOS_application-profile_hydrology/1.0/req/hydrosos</ows:Profile>
+	</ows:ServiceIdentification>
+	<ows:ServiceProvider>
+		<ows:ServiceContact>
+			<ows:ContactInfo>
+				<ows:Address/>
+			</ows:ContactInfo>
+		</ows:ServiceContact>
+	</ows:ServiceProvider>
+	<ows:OperationsMetadata>
+		<ows:Operation name="GetCapabilities">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="{{url_for("service")}}">
+						<ows:Constraint name="Content-Type">
+							<ows:AllowedValues>
+								<ows:Value>application/x-kvp</ows:Value>
+							</ows:AllowedValues>
+						</ows:Constraint>
+					</ows:Get>
+				</ows:HTTP>
+			</ows:DCP>
+		</ows:Operation>
+		<ows:Operation name="GetFeatureOfInterest">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="{{url_for("service")}}">
+						<ows:Constraint name="Content-Type">
+							<ows:AllowedValues>
+								<ows:Value>application/x-kvp</ows:Value>
+							</ows:AllowedValues>
+						</ows:Constraint>
+					</ows:Get>
+				</ows:HTTP>
+			</ows:DCP>
+		</ows:Operation>
+		<ows:Operation name="GetObservation">
+			<ows:DCP>
+				<ows:HTTP>
+					<ows:Get xlink:href="{{url_for("service")}}">
+						<ows:Constraint name="Content-Type">
+							<ows:AllowedValues>
+								<ows:Value>application/x-kvp</ows:Value>
+							</ows:AllowedValues>
+						</ows:Constraint>
+					</ows:Get>
+				</ows:HTTP>
+			</ows:DCP>
+		</ows:Operation>
+		<ows:Parameter name="service">
+			<ows:AllowedValues>
+				<ows:Value>WML2</ows:Value>
+			</ows:AllowedValues>
+		</ows:Parameter>
+		<ows:Parameter name="version">
+			<ows:AllowedValues>
+				<ows:Value>2.0</ows:Value>
+			</ows:AllowedValues>
+		</ows:Parameter>
+	</ows:OperationsMetadata>
+	<sos:filterCapabilities>
+		<fes:Filter_Capabilities>
+			<fes:Conformance>
+				<fes:Constraint name="ImplementsMinSpatialFilter">
+					<ows:NoValues/>
+					<ows:DefaultValue>true</ows:DefaultValue>
+				</fes:Constraint>
+				<fes:Constraint name="ImplementsSpatialFilter">
+					<ows:NoValues/>
+					<ows:DefaultValue>true</ows:DefaultValue>
+				</fes:Constraint>
+				<fes:Constraint name="ImplementsMinTemporalFilter">
+					<ows:NoValues/>
+					<ows:DefaultValue>true</ows:DefaultValue>
+				</fes:Constraint>
+				<fes:Constraint name="ImplementsTemporalFilter">
+					<ows:NoValues/>
+					<ows:DefaultValue>true</ows:DefaultValue>
+				</fes:Constraint>
+			</fes:Conformance>
+			<fes:Spatial_Capabilities>
+				<fes:GeometryOperands>
+					<fes:GeometryOperand name="gml:Point"/>
+				</fes:GeometryOperands>
+				<fes:SpatialOperators>
+					<fes:SpatialOperator name="BBOX"/>
+				</fes:SpatialOperators>
+			</fes:Spatial_Capabilities>
+			<fes:Temporal_Capabilities>
+				<fes:TemporalOperands>
+					<fes:TemporalOperand name="gml:TimePeriod"/>
+					
+				</fes:TemporalOperands>
+				<fes:TemporalOperators>
+					<fes:TemporalOperator name="During"/>
+					
+				</fes:TemporalOperators>
+			</fes:Temporal_Capabilities>
+		</fes:Filter_Capabilities>
+	</sos:filterCapabilities>
+	<sos:contents>
+		<sos:Contents>
+			<swes:procedureDescriptionFormat>http://www.opengis.net/sensorML/1.0.1</swes:procedureDescriptionFormat>
+			<swes:procedureDescriptionFormat>http://www.opengis.net/waterml/2.0/observationProcess</swes:procedureDescriptionFormat>
+			{%for p in params%}
+			<swes:observableProperty>{{url_for("oneParameter", parameter_name = p.name)}}</swes:observableProperty>
+			{%endfor%}
+			{%for proc in procedures%}
+			<swes:offering>
+				<sos:ObservationOffering>
+					<swes:description>{{proc.description}}</swes:description>
+					<swes:identifier>{{url_for("oneProcedure", procedure_name = proc.name)}}</swes:identifier>
+					<swes:name>{{proc.name}}</swes:name>
+					<swes:procedure>{{url_for("oneProcedure", procedure_name = proc.name)}}</swes:procedure>
+					<sos:observedArea>
+						<gml:Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/4326">
+							<gml:lowerCorner>-45.9598 0.0</gml:lowerCorner>
+							<gml:upperCorner>36.78469999999999 175.4786</gml:upperCorner>
+						</gml:Envelope>
+					</sos:observedArea>
+				</sos:ObservationOffering>
+			</swes:offering>
+			{%endfor%}
+			{%for dom in domains%}
+			<wml2:samplingFeatureCollection>
+				<wml2:todoname>{{dom.domain_name}}</wml2:todoname>
+				<wml2:todofeatures xlink:href="to be done"></wml2:todofeatures>
+			</wml2:samplingFeatureCollection>
+			{%endfor%}
+			<sos:responseFormat>http://www.opengis.net/waterml/2.0</sos:responseFormat>
+			<sos:observationType>http://www.opengis.net/def/observationType/OGC-OM/2.0/OM_Measurement</sos:observationType>
+		</sos:Contents>
+	</sos:contents>
+</sos:Capabilities>

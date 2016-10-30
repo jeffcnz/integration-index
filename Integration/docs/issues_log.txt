@@ -1,0 +1,77 @@
+To delete db
+
+from command line dropdb 'tsintegration.db'
+
+To connect to db from command line
+
+psql -U vagrant tsintegration.db
+
+Database
+Reassess structure - ok but could be better
+Add additional fields for agencies and TS servers, links to websites etc.  Some Done
+Add description and photourl fields to sites table  Done
+Check length of fields appropriate
+Normalise the Monitoring sites fields - partially Done
+Add schema editing fulctionality (without needing to rebuild db)
+
+Check 52N DB schema and mimic where appropriate.
+
+Data loading functions
+Change so that they check if a record exists and if it does then update, not add a new one - Done
+Get Monitoring sites importing - Done
+Get function to check if a value is present working - Done.
+
+Add load functions for interpolation
+Check interpolation data for continuous Hilltop - Done
+Check other Hilltop interpolation types - Done
+
+App
+Build site pages and link from sites - Functionally done, needs full build
+Add filtering and search functionality (Datatables plugin?)
+Add parameter pages - Done
+Add offering (domain) pages with parameters shown, link to parameter page
+Add agency pages with summary of wfs, parameter names, ts etc all on one page
+Style
+Add navbar to the header Done
+
+GetCapabilities
+Sort template and data to it -Done except for current time
+Add temporal filters - added but without phenomenonTime qualifier
+Add averaging and total functionality - Done
+
+GetFeatures
+Operational.
+Site metadata needs to be added.
+Add time and agency info.
+Add bounding box filter
+Add offering Filter
+Add JSON output format option - done (geoJson)
+
+GetObservations
+
+
+
+Interpolation function not working Fixed
+
+
+Currently only constructing url, not posting request or doing any translation. Sorted, but template needs improved
+Only Hilltop support, plus Kisters Hydstra but not tested
+Need to add logic so that water quality seperate request construction than continuous - done but not tested.
+
+Add checking logic, if parameter not part of site offering return error
+Add error checking throughout, time and procedure
+
+Check daily average interpolation type for Hilltop
+
+Current Kisters implementation is SOS, not native calls.
+
+
+ARC - Site ID doesn't appear correct in WFS, isn't the name to call for the ts url.
+	- Water quality data, how request
+
+WRC - what are the ts calls and what does the response look like for water quality
+
+HRC - what is the water quality ts url.
+
+
+

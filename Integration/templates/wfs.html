@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+		<div class = "row header">
+			<div class = "col-md-6">
+				<h1>Wfs</h1>
+			</div>
+			<div class = "col-md-6">
+				
+			</div>
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr>
+			</div>	
+		</div>
+
+		
+		
+		{% for w, a in wfs %}
+		<div class = "row">
+				<div class = "col-md-12">
+					<h4 class = "name">{{a.name}}</p>
+				
+					<p>{{w.sites_url}}</p>
+
+				</div>
+
+		</div>
+
+	{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+		<div class = "row header">
+			<div class = "col-md-6">
+				<h1>Integration Index</h1>
+			</div>
+			<div class = "col-md-6">
+				<h4>Version 0.1</h4>
+			</div>
+		</div>
+
+		
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr>
+			</div>	
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-12 description">
+				<h2>Overview</h2>
+				<p>
+					This has been built to demonstrate a potential proof of concept Integration Index for New Zealand Environmental Data. It has been built using Flask linked to a Postgesql database using SQLAlchemy.  Flask provides a simple API and SQLAlchemy means that if a different database engine is required the migration will be easy.
+				</p>
+				<p>
+					The goal was to develop an api that is able to provide a single, consistent OGC compliant service that uses national site identifers and parameter names to retrieve time series data from a variety of agencies that use different time series servers and have varying naming conventions. 	
+				</p>
+				<p>
+					The api allows:
+					<ul>
+						<li>A single entry point to environmental data with consistent naming and functionality.</li>
+						<li>Features to be tested that are not available on all commercial systems. (e.g. JSON output)</li>
+						<li>Services to be developed to use the data, based on consistent naming.</li>
+					</ul>
+				</p>
+				<p>
+					SOS capabilities.
+				</p>
+				<ul>
+					<li>GetCapabilities</li>
+					<li>GetFeatureOfInterest</li>
+					<li>GetObservation</li>
+				</ul>
+				
+				
+				<h2>Viewer</h2>
+				<p>A more userfriendly method of exploring the data availability is provided via these web-pages.
+				Use the sites page to select a site of interest and then select the data on the site page.</p>
+			</div>
+		</div>
+		
+		
+
+{% endblock %}

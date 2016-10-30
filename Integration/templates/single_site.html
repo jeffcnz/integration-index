@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block content %}
+		<div class = "row header single_site">
+			<div class = "col-md-6">
+				<h1 id = "site_id">{{siteAgency[0].national_id}}</h1>
+			</div>
+			<div class = "col-md-6">
+				
+			</div>
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr>
+			</div>	
+		</div>
+
+		
+		
+		
+		<div class = "row">
+				<div class = "col-md-4">
+					<meta id="site_lat" data-lat="{{siteAgency[0].latitude}}">
+					<meta id="site_long" data-long="{{siteAgency[0].longitude}}">
+					<div id="siteLoc" style="height: 200px;"></div>
+
+				</div>
+
+				<div class = "col-md-8 info">
+					<h4 class = "name">{{siteAgency[0].site_name}}</h4>
+				
+					<p>Data provided by <a href="#">{{siteAgency[1].name}}</a></p>
+					<!--p>Time Series Server url </p-->
+
+				</div>
+				
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr>
+			</div>	
+		</div>
+		
+		<div class = "row">
+				<div class = "col-md-6">
+					<h4>Options</h4>
+				
+					<p>Select the data to retrieve:</p>
+					<div id = "observedProperty_Select">
+						<label>Observed Property:
+							<select>
+								{% for sp in siteParams %}
+								<option value="{{sp[2].name}}">{{sp[2].name}}</option>
+								{% endfor %}
+							</select>
+						</label>
+					</div>
+					
+
+					<div id = "start_Time_Select" class="form-group">
+						<p>Start Date Time</p>
+						
+                		<div class='input-group date' id='startdatetimepicker'>
+                    		<input type='text' class="form-control" />
+                    		<span class="input-group-addon">
+                        		<span class="glyphicon glyphicon-calendar"></span>
+                    		</span>
+                		</div>
+            			
+					</div>
+					
+					<div id = "end_Time_Select" class="form-group">
+						<p>End Date Time</p>
+						<div class='input-group date' id='enddatetimepicker'>
+                    		<input type='text' class="form-control"/>
+                    		<span class="input-group-addon">
+                        		<span class="glyphicon glyphicon-calendar"></span>
+                    		</span>
+                		</div>
+
+					</div>
+					
+					<div id = "procedure_Select">
+						<label>Procedure:
+							<select>
+								{% for p in procedures %}
+								<option value="{{p.name}}">{{p.name}}</option>
+								{% endfor %}
+							</select>
+						</label>
+					</div>
+					<div><h4>Url for Data.</h4></div>
+					<div id = "url_display"></div>
+					
+				</div>
+				<div class = "col-md-6">
+					<ul class="nav nav-tabs" role="tablist">
+  						<li role="presentation" class="active"><a href="#ts_chart" aria-controls="home" role="tab" data-toggle="tab">Chart</a></li>
+  						<li role="presentation"><a href="#ts_table"aria-controls="home" role="tab" data-toggle="tab">Table</a></li>
+  						
+					</ul>
+					<div class="tab-content clearfix">
+			  			<div role="tabpanel" class="tab-pane active" id="ts_chart">
+          					<p></p>
+          					
+          					<canvas id="resultChart" height="300"></canvas>
+
+          					
+						</div>
+						<div role="tabpanel" class="tab-pane" id="ts_table">
+          					<table class="table" id="result_table">
+					 	
+								
+							 	
+							 	
+							</table>
+						</div>
+        
+					</div>
+					
+					
+					
+					
+
+				</div>
+		</div>
+	
+
+{% endblock %}
+
+{% block scripts%}
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+  	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/locale/en-nz.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/js/bootstrap-datetimepicker.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.js"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='js/siteChart.js')}}"></script>
+{% endblock %}

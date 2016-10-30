@@ -1,0 +1,33 @@
+    <wml2:Collection 
+      xmlns:sos="http://www.opengis.net/sos/2.0" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+      xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" 
+      xmlns:gml="http://www.opengis.net/gml/3.2" 
+      xmlns:sf="http://www.opengis.net/sampling/2.0"
+      xmlns:wml2="http://www.opengis.net/waterml/2.0" 
+      xmlns:xlink="http://www.w3.org/1999/xlink" 
+      xsi:schemaLocation="http://www.opengis.net/sos/2.0 http://schemas.opengis.net/sos/2.0/sosGetFeatureOfInterest.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd http://www.opengis.net/samplingSpatial/2.0 http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd http://www.opengis.net/sampling/2.0 http://schemas.opengis.net/sampling/2.0/samplingFeature.xsd">
+      <gml:description>GetFeatures response</gml:description>
+        <wml2:metadata>
+            <wml2:DocumentMetadata gml:id="document-metadata.1">
+                <wml2:generationDate>{{time}}</wml2:generationDate>
+                <wml2:version xlink:href="http://www.opengis.net/waterml/2.0" xlink:title="WaterML 2.0"/>
+                <wml2:generationSystem>Template</wml2:generationSystem>
+                <wml2:profile xlink:href="http://www.opengis.net/spec/waterml/2.0/conf/xsd-feature-of-interest-monitoring-point"/>
+                <wml2:profile xlink:href="http://www.opengis.net/spec/waterml/2.0/conf/xsd-collection"/>
+            </wml2:DocumentMetadata>
+        </wml2:metadata>
+
+      {% for feature in features %}
+      <wml2:MonitoringPoint>
+        <gml:description>{{feature[0].description}}</gml:description>
+        <gml:name>{{feature[0].site_name}}</gml:name>
+        <sf:sampledFeature></sf:sampledFeature>
+        <sams:shape>
+          <gml:Point gml:id="{{feature[0].national_id}}">
+            <gml:pos srsName="urn:ogc:def:crs:EPSG::4326">{{feature[0].latlng}}</gml:pos>
+          </gml:Point>
+        </sams:shape>
+      </wml2:MonitoringPoint>
+      {% endfor %}
+    </wml2:Collection>

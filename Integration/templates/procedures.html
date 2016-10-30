@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+		<div class = "row header">
+			<div class = "col-md-6">
+				<h1>Procedures</h1>
+			</div>
+			<div class = "col-md-6">
+				
+			</div>
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr>
+			</div>	
+		</div>
+
+		
+		
+		{% for proc in procedures %}
+		<div class = "row">
+				<div class = "col-md-12">
+					
+					<a href="{{url_for('oneProcedure', procedure_name = proc.name)}}">{{proc.name}}</a>
+					
+				</div>
+
+				
+
+		</div>
+
+	{% endfor %}
+
+{% endblock %}

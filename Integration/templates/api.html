@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block content %}
+		<div class = "row header">
+			<div class = "col-md-6">
+				<h1>API Reference</h1>
+			</div>
+			<div class = "col-md-6">
+				<h4></h4>
+			</div>
+		</div>
+
+		
+		<div class = "row">
+			<div class = "col-md-12">
+				<hr>
+			</div>	
+		</div>
+
+		<div class = "row">
+			<div class = "col-md-12 description">
+				
+				<h2>Introduction</h2>
+				<p>The API is available at /SOS and provides a basic SOS implementation returning observations as WaterML2.</p>
+				<h3>Get Capabilities</h3>
+				<p>http://host/SOS?Service=SOS&amp;Request=GetCapabilities</p>
+				<p>Returns an XML document describing the capabilities of the service. (Under development)</p>
+				<h3>GetFeatureOfInterest</h3>
+				<p>http://host/SOS?Service=SOS&amp;Request=GetFeatureOfInterest</p>
+				Returns an XML document describing the points data is available for.
+				<h4>Additional Keys</h4>
+				<p>Optional Key Value Pairs to limit the search results, or provide alternate formats are:-</p>
+				<table class = "table">
+					<thead>
+						<tr>
+							<th>Option</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>&amp;BBox=lat,lng,lat,lng</td>
+							<td>Implements a bounding Box filter returning only points that fall between the latitude and longitude of the corners provided (the order doesn't matter)</td>
+						</tr>
+						<tr>
+							<td>&amp;Offering=OfferingName</td>
+							<td>Filters the sites to only show those that are associated with a particular offering.</td>
+						</tr>
+						<tr>
+							<td>&amp;Format=JSON</td>
+							<td>Returns the requested data in JSON format consistent with OGC O&amp;M standard.  If this is omitted then the default XML format will be returned.</td>
+						</tr>
+					</tbody>
+				</table>
+				<h3>GetObservation</h3>
+				<p>Returns an XML document containing the requested data in WaterML2 format. The base url is</p>
+				<p>http://host/SOS?Service=SOS&amp;Request=GetObservation</p>
+				<p> </p>
+				<h4>Additional Keys</h4>
+				<p>Key Value Pairs to limit the search results, or provide alternate formats are:-</p>
+				<table class = "table">
+					<thead>
+						<tr>
+							<th>Option</th>
+							<th>Requirement</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>&amp;FeatureOfInterest= National Identifier</td>
+							<td>Required</td>
+							<td>The national identifier of the feature that data is being requested from.</td>
+						</tr>
+						<tr>
+							<td>&amp;ObservedProperty= Property Name</td>
+							<td>Required</td>
+							<td>The parameter name being requested.</td>
+						</tr>
+						<tr>
+							<td>&amp;Procedure= Procedure Name</td>
+							<td>Required</td>
+							<td>The procedure to be applied to the data, see table below for valid options.</td>
+						</tr>
+						<tr>
+							<td>&amp;TemporalFilter= Time range for data required </td>
+							<td>Optional</td>
+							<td>Format will be om:phenomenonTime,2016-09-01T00:00:00/2016-09-02T00:00:00.  If not provided then the latest result is returned.</td>
+						</tr>
+						<tr>
+							<td>&amp;Format=JSON</td>
+							<td>Optional</td>
+							<td>Returns the requested data in JSON format consistent with OGC O&amp;M standard.  If this is omitted then the default XML format will be returned.</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<h4>Procedure</h4>
+				<p>Available procedures are</p>
+				<table class = "table">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for p in procedures %}
+						<tr>
+							<td>{{p.name}}</td>
+							<td>{{p.description}}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		
+
+{% endblock %}
