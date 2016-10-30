@@ -28,7 +28,9 @@ The code provided is a development version and the app will restart each time in
 The database is built and populated by running 3 scripts in order.  This is done on 'vagrant up', but if the database needs to be refreshed or rebuilt it can be done by running the following commands from the ssh terminal.
 
 'python database-setup.py' - creates the database structure
+
 'python base_data_load.py' - loads the data from the base_data.py file.
+
 'python sites_data_load.py' - loads site information from LAWA monitoringsitesreferencedata WFS. Requires a valid url to be provided in the base_data.py file, and the WFS to conform to the LAWA data specification.
 
 'python integration.py' - starts the application
